@@ -14,6 +14,7 @@ from sqlalchemy.sql import Select
 
 from classes.cars_number import Number
 from classes.data import DataClean
+from get_country import get_country
 
 
 @lru_cache(maxsize=1) # створюється одна сесія підключення до бд під час роботи бота, яка зберігає максимум 1 запит в кеші
@@ -67,6 +68,7 @@ def _format_car(car: DataClean) -> str:
         ("Тип кузова", car.body.body if car.body else None),
         ("Паливо", car.fuel.fuel if car.fuel else None),
         ("VIN", car.vin),
+        ("Країна виробника", get_country(car.vin) if car.vin else None),
     ]
     return "\n".join(
         f"<b>{label}:</b> {escape(str(value))}"
