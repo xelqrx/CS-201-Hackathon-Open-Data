@@ -18,3 +18,17 @@
 3. Розшифрування отриманих даних
 4. Формування відповіді користувачу
 5. Відправлення повідомлення
+
+## Налаштування бази даних
+
+Для пошуку задайте параметри PostgreSQL у `.env`:
+
+```env
+DB_HOST=localhost
+DB_PORT=5432
+DB_USER=your_user
+DB_PASSWORD=your_password
+DB_NAME=your_database
+```
+
+Встановіть залежності командою `pip install -r requirements.txt`.
