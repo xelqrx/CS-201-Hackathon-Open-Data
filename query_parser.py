@@ -11,6 +11,7 @@ LATIN_TO_CYRILLIC = str.maketrans("ABCEHIKMOPTX", "АВСЕНІКМОРТХ")
 # (їх не використовують, щоб не плутати з 1 і 0).
 VIN_PATTERN = re.compile(r"[A-HJ-NPR-Z0-9]{17}")
 
+
 # Український номер нового зразка: 2 літери, 4 цифри, 2 літери (наприклад AA1234BB).
 PLATE_PATTERN = re.compile(r"[АВСЕНІКМОРТХ]{2}\d{4}[АВСЕНІКМОРТХ]{2}")
 
@@ -22,9 +23,8 @@ class QueryType(Enum):
 
 
 def normalize(text: str) -> str:
-    """Прибирає пробіли й дефіси, робить великі літери, кирилицю замінює на латиницю."""
-    cleaned = re.sub(r"[\s\-]", "", text).upper()
-    return cleaned.translate(LATIN_TO_CYRILLIC)
+    """Прибирає пробіли й дефіси та робить літери великими."""
+    return re.sub(r"[\s\-]", "", text).upper()
 
 
 def detect_query_type(text: str) -> tuple[QueryType, str]:
@@ -33,6 +33,7 @@ def detect_query_type(text: str) -> tuple[QueryType, str]:
 
     if VIN_PATTERN.fullmatch(query):
         return QueryType.VIN, query
-    if PLATE_PATTERN.fullmatch(query):
-        return QueryType.PLATE, query
+    plate_query = query.translate(LATIN_TO_CYRILLIC)
+    if PLATE_PATTERN.fullmatch(plate_query):
+        return QueryType.PLATE, plate_query
     return QueryType.UNKNOWN, query
