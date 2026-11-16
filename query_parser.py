@@ -5,7 +5,7 @@ from enum import Enum
 
 # Кириличні літери, які на номерах виглядають так само, як латинські.
 # Українські номери використовують лише ці 12 літер: А В С Е Н І К М О Р Т Х.
-CYRILLIC_TO_LATIN = str.maketrans("АВСЕНІКМОРТХ", "ABCEHIKMOPTX")
+LATIN_TO_CYRILLIC = str.maketrans("ABCEHIKMOPTX", "АВСЕНІКМОРТХ")
 
 # VIN: рівно 17 символів, латинські літери та цифри, крім I, O, Q
 # (їх не використовують, щоб не плутати з 1 і 0).
@@ -24,7 +24,7 @@ class QueryType(Enum):
 def normalize(text: str) -> str:
     """Прибирає пробіли й дефіси, робить великі літери, кирилицю замінює на латиницю."""
     cleaned = re.sub(r"[\s\-]", "", text).upper()
-    return cleaned.translate(CYRILLIC_TO_LATIN)
+    return cleaned.translate(LATIN_TO_CYRILLIC)
 
 
 def detect_query_type(text: str) -> tuple[QueryType, str]:
