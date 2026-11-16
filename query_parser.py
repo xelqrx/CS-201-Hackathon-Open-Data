@@ -12,7 +12,7 @@ LATIN_TO_CYRILLIC = str.maketrans("ABCEHIKMOPTX", "АВСЕНІКМОРТХ")
 VIN_PATTERN = re.compile(r"[A-HJ-NPR-Z0-9]{17}")
 
 # Український номер нового зразка: 2 літери, 4 цифри, 2 літери (наприклад AA1234BB).
-PLATE_PATTERN = re.compile(r"[ABCEHIKMOPTX]{2}\d{4}[ABCEHIKMOPTX]{2}")
+PLATE_PATTERN = re.compile(r"[АВСЕНІКМОРТХ]{2}\d{4}[АВСЕНІКМОРТХ]{2}")
 
 
 class QueryType(Enum):
