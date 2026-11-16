@@ -1,5 +1,8 @@
 from car_search import find_by_plate, find_by_vin
 from query_parser import QueryType, detect_query_type, normalize
+from dotenv import load_dotenv
+
+load_dotenv()
 
 
 from rich import box
@@ -12,7 +15,7 @@ console = Console()
 
 # ── Інтерфейс ────────────────────────────────────────────────────────────────
 def show_greeting() -> None:
-    console.print(Panel("Вітаю! 👋", border_style="magenta", box=box.DOUBLE))
+    console.print(Panel("Вас вітає Find a Car! 👋", border_style="magenta", box=box.DOUBLE))
 
 
 def show_header() -> None:
@@ -25,6 +28,8 @@ def show_error() -> None:
 
 
 def show_result(text: str) -> None:
+    text = text.replace("<b>", "")
+    text = text.replace("</b>", "")
     console.print(Panel(text, title="Відомості", border_style="green",
                         box=box.ROUNDED, padding=(1, 2)))
 
