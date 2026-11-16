@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Brand:
+from .base import Base
+
+
+class Brand(Base):
     __tablename__ = "brands"
 
     id = sql.Column(sql.Integer, primary_key=True)

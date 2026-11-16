@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Number:
+from .base import Base
+
+
+class Number(Base):
     __tablename__ = "cars_numbers"
 
     id = sql.Column(sql.Integer, primary_key=True)

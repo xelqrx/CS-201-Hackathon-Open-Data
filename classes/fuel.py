@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Fuel:
+from .base import Base
+
+
+class Fuel(Base):
     __tablename__ = "fuel"
 
     id = sql.Column(sql.Integer, primary_key=True)

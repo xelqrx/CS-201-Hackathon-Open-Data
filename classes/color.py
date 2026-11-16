@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Color:
+from .base import Base
+
+
+class Color(Base):
     __tablename__ = "colors"
 
     id = sql.Column(sql.Integer, primary_key=True)

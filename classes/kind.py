@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Kind:
+from .base import Base
+
+
+class Kind(Base):
     __tablename__ = "kinds"
 
     id = sql.Column(sql.Integer, primary_key=True)

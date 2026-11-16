@@ -1,6 +1,9 @@
 import sqlalchemy as sql
 
-class Purpose:
+from .base import Base
+
+
+class Purpose(Base):
     __tablename__ = "purposes"
 
     id = sql.Column(sql.Integer, primary_key=True)
